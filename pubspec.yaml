@@ -1,6 +1,8 @@
 name: opencv_awesome
-description: A new Flutter plugin for opencv high level APIs.
-version: 0.0.1
+description: A new Flutter plugin for opencv high level stitching APIs. it support stitching
+multi images in both and horizontal direction to create panoramic view. easy to use and customize for creating panorama.
+version: 0.0.2
+homepage: https://github.com/azadprajapat/opencv_awesome
 repository: https://github.com/azadprajapat/opencv_awesome.git
 
 environment:
