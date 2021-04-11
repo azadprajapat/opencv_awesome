@@ -13,7 +13,7 @@ The plugin is supported for android only and will be extended for ios in future.
 
 ![alt preview](https://i.ibb.co/dp1ft8P/Screenshot-1618131260.png)
 
-## Image format:
+ ## Image format:
 
 - PNG
 - JPEG
@@ -24,8 +24,9 @@ The plugin is supported for android only and will be extended for ios in future.
 2. add ndk support to your project
 3. opencv sdk
   - Download the opencv sdk from https://opencv.org/releases/
-  - add opencv sdk to the location "C:/opencv/OpenCV-android-sdk/" or you can edit the cmakefile of plugin "CMakeLists.txt"
-4. Add read and write storage permission to your project
+
+  - add opencv sdk to the location "C:/opencv/OpenCV-android-sdk/" or you can edit the cmakefile of plugin "CMakeLists.txt" 
+4. Add read and write storage permission to your project  
 
 
 ## Example
