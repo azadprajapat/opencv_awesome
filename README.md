@@ -8,7 +8,8 @@ A Flutter plugin providing the ability to use opencv native c++ implementation f
 The plugin is supported for android only and will be extended for ios in future.
 
 **Features:**
-  1. Stich multi images using high level stitching api of opencv.
+  1. Stitch images using high level stitching APIs of opencv.
+  2. Create full panorama image taking care of overlap region.
   
 ![alt preview](https://i.ibb.co/dp1ft8P/Screenshot-1618131260.png)
 
@@ -18,8 +19,7 @@ The plugin is supported for android only and will be extended for ios in future.
 - JPEG
 - JPG
 
-Load an image asynchronously and resize it as a thumbnail.
-## prerequisite:
+ ## prerequisite:
 1. Ndk configuration
 2. add ndk support to your project
 3. opencv sdk
