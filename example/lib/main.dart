@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:opencv_awesome/opencv_awesome.dart';
 import 'dart:async';
 import 'dart:io';
-import 'package:opencv_awesome/opencv_awesome.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -17,10 +17,10 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   bool _isWorking = false;
-  String path1;
-  String path2;
-  String output_path;
-
+  List<String> horizontal_path_list=[];
+  List<String> vertical_path_list=[];
+  String horizontal_output_path;
+  String vertical_output_path;
   @override
   void initState() {
     super.initState();
@@ -36,111 +36,179 @@ class _MyAppState extends State<MyApp> {
             ),
             body: _isWorking
                 ? Center(child: CircularProgressIndicator())
-                : Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                 children: [
+                : SingleChildScrollView(
+                  child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                   children: [
+                     SizedBox(height: 20,),
+                     Text("horizontal panorama",style: TextStyle(fontSize: 20),),
+                     SizedBox(height: 20,),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: List.generate(horizontal_path_list.length, (index) => Container(
+                          width: 180,
+                          child: Image.file(File(horizontal_path_list[index])),
+                        ),),),
+                    ),
+                    SizedBox(height: 20,),
+                    horizontal_output_path!=null
+                        ? Center(
+                      child: Container(
+                        height: 180,
+                          child: Image.file(File(horizontal_output_path),fit: BoxFit.fill,),
+                      ),
+                    )
+                        : Container(),
+                    SizedBox(
+                      height: 10,
+                    ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                    path1!=null
-                        ? Center(
-                      child: Container(
-                        width:  140,
-                        height: 200,
-                        child: Image.file(File(path1)),
+                      Center(
+                          child: MaterialButton(
+                            color: Colors.green,
+                            onPressed: () async {
+                              var path = await take_image();
+                              setState(() {
+                                horizontal_path_list.add(path);
+                              });
+                            },
+                            child: Text("Add Image LTR ",style: TextStyle(color: Colors.white)),
+                          )),
+                      //
+                      SizedBox(
+                        width: 30,
                       ),
-                    )
-                        : Container(),
-                    path2!=null
-                        ? Center(
-                      child: Container(
-                        width: 140,
-                        height: 200,
-                        child: Image.file(File(path2)),
-                      ),
-                    )
-                        : Container(),
+                      // This trailing comma makes auto-formatting nicer for build methods.
+                      Center(
+                          child: MaterialButton(
+                            color: Colors.green,
+                            onPressed: () async {
+                               setState(() {
+                                horizontal_path_list=[];
+                                horizontal_output_path=null;
+                              });
+                            },
+                            child: Text("Reset",style: TextStyle(color: Colors.white)),
+                          )),
 
-
-                  ],),
-                  SizedBox(height: 10,),
-                  output_path!=null
-                      ? Center(
-                    child: Container(
-                      height: 200,
-                      width: 300,
-                      decoration: BoxDecoration(
-                          color: Colors.blue,
-                          image: DecorationImage(image: FileImage(File(output_path),),fit: BoxFit.fill)
-                      ),
-                    ),
-                  )
-                      : Container(),
-
-                  SizedBox(
-                    height: 10,
-                  ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Center(
-                        child: MaterialButton(
-                          color: Colors.green,
-                          onPressed: () async {
-                            var path = await take_image();
-                            setState(() {
-                              path1 = path;
-                            });
-                          },
-                          child: Text("Add Image 1",style: TextStyle(color: Colors.white)),
-                        )),
-                    //
+                    ],
+                  ) , // T
                     SizedBox(
-                      width: 30,
+                      height: 10,
                     ),
-                    // This trailing comma makes auto-formatting nicer for build methods.
                     Center(
                         child: MaterialButton(
                           color: Colors.green,
-                          onPressed: () async {
-                            var path = await take_image();
+                          disabledColor: Colors.black38,
+                          onPressed: horizontal_path_list.length>1
+                              ? () async{
                             setState(() {
-                              path2 = path;
+                              _isWorking=true;
                             });
-                          },
-                          child: Text("Add Image 2",style: TextStyle(color: Colors.white)),
+                            String dirpath= (await getApplicationDocumentsDirectory()).path+"/"+DateTime.now().toString()+"_.jpg";
+                             await  OpencvAwesome.stitch_horizontally(horizontal_path_list, dirpath,oncompletedHorizontal);
+                          }
+                              : null,
+                          child: Text("Process",style: TextStyle(color: Colors.white),),
                         )),
 
-                  ],
-                ) , // T
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Center(
-                      child: MaterialButton(
-                        color: Colors.green,
-                        disabledColor: Colors.black38,
-                        onPressed: path1 != null && path2 != null
-                            ? () async{
-                          setState(() {
-                            _isWorking=true;
-                          });
-                          String dirpath= (await getApplicationDocumentsDirectory()).path+"/"+DateTime.now().toString()+"_.jpg";
-                          List<String> img_paths = [path1, path2];
-                           await  OpencvAwesome.stich_horizontal(img_paths, dirpath,oncompleted);
-                        }
-                            : null,
-                        child: Text("Process",style: TextStyle(color: Colors.white),),
-                      )),
-                ])));
+                     SizedBox(height: 50,),
+                     SizedBox(height: 20,),
+                     Text("Vertical panorama",style: TextStyle(fontSize: 20),),
+                     SizedBox(height: 20,),
+                     vertical_output_path!=null
+                         ? Center(
+                       child: Container(
+                         width: 180,
+                         child: Image.file(File(vertical_output_path),fit: BoxFit.fill,),
+                       ),
+                     )
+                         : Container(),
+                     SizedBox(
+                       height: 10,
+                     ),
+                     Row(
+                       mainAxisAlignment: MainAxisAlignment.center,
+                       children: [
+                         Center(
+                             child: MaterialButton(
+                               color: Colors.green,
+                               onPressed: () async {
+                                 var path = await take_image();
+                                 setState(() {
+                                   vertical_path_list.add(path);
+                                 });
+                               },
+                               child: Text("Add Image TTB",style: TextStyle(color: Colors.white)),
+                             )),
+                         //
+                         SizedBox(
+                           width: 30,
+                         ),
+                         // This trailing comma makes auto-formatting nicer for build methods.
+                         Center(
+                             child: MaterialButton(
+                               color: Colors.green,
+                               onPressed: () async {
+                                 setState(() {
+                                   vertical_path_list=[];
+                                   vertical_output_path=null;
+                                 });
+                               },
+                               child: Text("Reset",style: TextStyle(color: Colors.white)),
+                             )),
+
+                       ],
+                     ) , // T
+                     SizedBox(
+                       height: 10,
+                     ),
+                     Center(
+                         child: MaterialButton(
+                           color: Colors.green,
+                           disabledColor: Colors.black38,
+                           onPressed: vertical_path_list.length>1
+                               ? () async{
+                             setState(() {
+                               _isWorking=true;
+                             });
+                             String dirpath= (await getApplicationDocumentsDirectory()).path+"/"+DateTime.now().toString()+"_.jpg";
+                             await  OpencvAwesome.stitch_vertically(vertical_path_list, dirpath,oncompletedVertical);
+                           }
+                               : null,
+                           child: Text("Process",style: TextStyle(color: Colors.white),),
+                         )),
+                     SizedBox(height: 20,),
+                     SingleChildScrollView(
+                       scrollDirection: Axis.horizontal,
+                       child: Column(
+                         mainAxisAlignment: MainAxisAlignment.center,
+                         children: List.generate(vertical_path_list.length, (index) => Container(
+                           width: 180,
+                           child: Image.file(File(vertical_path_list[index])),
+                         ),),),
+                     ),
+
+
+                   ]),
+                )));
   }
-  void oncompleted(dirpath){
+  void oncompletedHorizontal(dirpath){
     setState(() {
-      output_path=dirpath;
+      horizontal_output_path=dirpath;
       _isWorking=false;
     });
   }
-
+  void oncompletedVertical(dirpath){
+    setState(() {
+      vertical_output_path=dirpath;
+      _isWorking=false;
+    });
+  }
   Future<String> take_image() async {
     File imagefile = await ImagePicker.pickImage(source: ImageSource.camera);
     return imagefile.path;

@@ -4,11 +4,11 @@ import 'package:ffi/ffi.dart';
 import 'package:opencv_awesome/modal/ProcessImage.dart';
 
 typedef _version_func = ffi.Pointer<Utf8> Function();
- typedef _process_image_func = ffi.Void Function(ffi.Pointer<Utf8>, ffi.Pointer<Utf8>);
+ typedef _stitch_image_func = ffi.Void Function(ffi.Pointer<Utf8>, ffi.Pointer<Utf8>,ffi.Pointer<Utf8>);
 
  // Dart function signatures
  typedef _VersionFunc = ffi.Pointer<Utf8> Function();
- typedef _ProcessImageFunc = void Function(ffi.Pointer<Utf8>, ffi.Pointer<Utf8>);
+ typedef _StitchImageFunc = void Function(ffi.Pointer<Utf8>, ffi.Pointer<Utf8>,ffi.Pointer<Utf8>);
 
  // Getting a library that holds needed symbols
  ffi.DynamicLibrary _lib = Platform.isAndroid
@@ -19,13 +19,17 @@ typedef _version_func = ffi.Pointer<Utf8> Function();
  final _VersionFunc _version = _lib
      .lookup<ffi.NativeFunction<_version_func>>('version')
      .asFunction();
- final _ProcessImageFunc _processImage = _lib
-     .lookup<ffi.NativeFunction<_process_image_func>>('process_image')
+ final _StitchImageFunc _stitchImage = _lib
+     .lookup<ffi.NativeFunction<_stitch_image_func>>('stitch_image')
      .asFunction();
 
+
 class Methods{
-  static processImage(ProcessImageArguments args) {
-     _processImage(Utf8.toUtf8(args.inputPath), Utf8.toUtf8(args.outputPath));
+  static stitchImageHorizontal(ProcessImageArguments args) {
+     _stitchImage(Utf8.toUtf8(args.inputPath), Utf8.toUtf8(args.outputPath),Utf8.toUtf8("horizontal"));
+  }
+  static stitchImageVertical(ProcessImageArguments args) {
+    _stitchImage(Utf8.toUtf8(args.inputPath), Utf8.toUtf8(args.outputPath),Utf8.toUtf8("vertical"));
   }
 }
 

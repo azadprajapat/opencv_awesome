@@ -43,8 +43,28 @@ struct tokens: ctype<char>
         return pathlist;
     }
 
+    Mat process_stitching(vector<Mat> imgVec){
 
-    Mat stich_all_image_to_mat(vector<string> img_list){
+        Mat result = Mat();
+          Stitcher::Mode mode = Stitcher::PANORAMA;
+        Ptr<Stitcher> stitcher = Stitcher::create(mode);
+            Stitcher::Status status = stitcher->stitch(imgVec, result);
+            if (status != Stitcher::OK)
+            {
+                 hconcat(imgVec,result);
+
+                 __android_log_print(ANDROID_LOG_VERBOSE,"C++Message","NOW WE ARE IN C++ AND UNABLE TO STITCH IMAGES");
+                __android_log_print(ANDROID_LOG_VERBOSE,"C++Message", to_string(status).c_str());
+
+             }else{
+                __android_log_print(ANDROID_LOG_VERBOSE,"C++Message","NOW WE ARE IN C++ AND STITCHING IS DONE SUCCESSFULLY");
+             }
+
+        cvtColor(result, result, COLOR_RGB2BGR);
+        return result;
+    }
+
+    vector<Mat> convert_to_matlist(vector<string> img_list,bool isvertical){
         vector<Mat> imgVec;
         for(auto k=img_list.begin();k!=img_list.end();++k)
         {
@@ -56,35 +76,33 @@ struct tokens: ctype<char>
             // Reduce the resolution for fast computation
             float scale = 1000.0f / input.rows;
             resize(newimage, newimage, Size(scale * input.rows, scale * input.cols));
+            if(isvertical)
+                rotate(newimage,newimage,ROTATE_90_COUNTERCLOCKWISE);
             imgVec.push_back(newimage);
         }
-
-        Mat result = Mat();
-          Stitcher::Mode mode = Stitcher::PANORAMA;
-        Ptr<Stitcher> stitcher = Stitcher::create(mode);
-            Stitcher::Status status = stitcher->stitch(imgVec, result);
-            if (status != Stitcher::OK)
-            {
-                 hconcat(imgVec,result);
-                 __android_log_print(ANDROID_LOG_VERBOSE,"C++Message","NOW WE ARE IN C++ AND UNABLE TO STITCH IMAGES");
-                __android_log_print(ANDROID_LOG_VERBOSE,"C++Message", to_string(status).c_str());
-
-             }else{
-                __android_log_print(ANDROID_LOG_VERBOSE,"C++Message","NOW WE ARE IN C++ AND STITCHING IS DONE SUCCESSFULLY");
-             }
-
-        cvtColor(result, result, COLOR_RGB2BGR);
-        resize(result, result, Size(result.rows, result.cols));
-        return result;
+       return imgVec;
     }
 
-    void process_image(char* inputImagePath, char* outputImagePath) {
+    void stitch_image(char* inputImagePath, char* outputImagePath, char* mode ) {
         __android_log_print(ANDROID_LOG_VERBOSE,"C++Message","WORKING ON STITCHER");
         string input_path_string =  inputImagePath;
         __android_log_print(ANDROID_LOG_VERBOSE,"C++Message","%s", input_path_string.c_str());
         vector<string> image_vector_list=getpathlist(input_path_string);
-        Mat result =stich_all_image_to_mat(image_vector_list);
-        imwrite(outputImagePath,result);
+        vector<Mat> mat_list;
+        if(strcmp(mode,"horizontal")==0){
+         mat_list=convert_to_matlist(image_vector_list, false);
+        }else if(strcmp(mode,"vertical")==0){
+            mat_list=convert_to_matlist(image_vector_list, true);
+        }else{
+            return;
+        }
+       Mat result = process_stitching(mat_list);
+       Mat cropped_image;
+        result(Rect(20,120,result.cols-40,result.rows-240)).copyTo(cropped_image);
+        if(strcmp(mode,"vertical")==0)
+            rotate(cropped_image,cropped_image,ROTATE_90_CLOCKWISE);
+
+         imwrite(outputImagePath,cropped_image);
     }
 
 }
