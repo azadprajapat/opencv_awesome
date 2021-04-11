@@ -16,12 +16,13 @@ Image format:
 - JPG
 
 Load an image asynchronously and resize it as a thumbnail.
-## PreRequirement:
+## prerequisite:
 1. Ndk configuration
 2. add ndk support to your project
 3. opencv sdk
-  ...Download the opencv sdk from [https://opencv.org/releases/]:(https://opencv.org/releases/)
-  ...add opencv sdk to the location "C:/opencv/OpenCV-android-sdk/" or you can edit the cmakefile of plugin "CMakeLists.txt"
+  - Download the opencv sdk from https://opencv.org/releases/
+  - add opencv sdk to the location "C:/opencv/OpenCV-android-sdk/" or you can edit the cmakefile of plugin "CMakeLists.txt" 
+4. Add read and write storage permission to your project  
 
 
 ## Example
