@@ -1,0 +1,7 @@
+# ninja log v5
+1	5075	0	CMakeFiles/native_opencv.dir/src/main/jni/native_opencv.cpp.o	d7cd9a750fe847a6
+5082	5551	0	E:/AndroidStudioProjects/sunscape/flutter_native_experiment/opencv_awesome/example/build/opencv_awesome/intermediates/cmake/debug/obj/x86_64/libnative_opencv.so	d847d92bc13eee66
+49	7105	0	CMakeFiles/native_opencv.dir/src/main/jni/native_opencv.cpp.o	d7cd9a750fe847a6
+7106	7644	0	E:/AndroidStudioProjects/sunscape/flutter_native_experiment/opencv_awesome/example/build/opencv_awesome/intermediates/cmake/debug/obj/x86_64/libnative_opencv.so	d847d92bc13eee66
+8	3225	0	CMakeFiles/native_opencv.dir/src/main/jni/native_opencv.cpp.o	d7cd9a750fe847a6
+3226	3551	0	E:/AndroidStudioProjects/sunscape/flutter_native_experiment/opencv_awesome/example/build/opencv_awesome/intermediates/cmake/debug/obj/x86_64/libnative_opencv.so	d847d92bc13eee66

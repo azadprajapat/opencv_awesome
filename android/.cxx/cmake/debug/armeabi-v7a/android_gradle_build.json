@@ -1,0 +1,49 @@
+
+{
+	"buildFiles" : 
+	[
+		"E:/AndroidStudioProjects/sunscape/flutter_native_experiment/opencv_awesome/android/CMakeLists.txt"
+	],
+	"cleanCommands" : 
+	[
+		"C:\\Users\\hp\\AppData\\Local\\Android\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build E:\\AndroidStudioProjects\\sunscape\\flutter_native_experiment\\opencv_awesome\\android\\.cxx\\cmake\\debug\\armeabi-v7a --target clean"
+	],
+	"cppFileExtensions" : [ "cpp" ],
+	"libraries" : 
+	{
+		"lib_opencv-Debug-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "lib_opencv",
+			"buildType" : "debug",
+			"output" : "E:/AndroidStudioProjects/sunscape/flutter_native_experiment/opencv_awesome/android/src/main/jniLibs/armeabi-v7a/libopencv_java4.so",
+			"toolchain" : "3544335133"
+		},
+		"native_opencv-Debug-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "native_opencv",
+			"buildCommand" : "C:\\Users\\hp\\AppData\\Local\\Android\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build E:\\AndroidStudioProjects\\sunscape\\flutter_native_experiment\\opencv_awesome\\android\\.cxx\\cmake\\debug\\armeabi-v7a --target native_opencv",
+			"buildType" : "debug",
+			"files" : 
+			[
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi16 --gcc-toolchain=C:/src/Android/Sdk/ndk/22.0.7026061/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/src/Android/Sdk/ndk/22.0.7026061/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -Dnative_opencv_EXPORTS -I..\\..\\..\\..\\src\\main\\includes  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -Wno-error=format-security -frtti -fexceptions -std=c++11 -std=gnu++11 -stdlib=libc++ -O0  -fPIC    -c ",
+					"src" : "E:/AndroidStudioProjects/sunscape/flutter_native_experiment/opencv_awesome/android/src/main/jni/native_opencv.cpp",
+					"workingDirectory" : "E:/AndroidStudioProjects/sunscape/flutter_native_experiment/opencv_awesome/android/.cxx/cmake/debug/armeabi-v7a"
+				}
+			],
+			"output" : "E:/AndroidStudioProjects/sunscape/flutter_native_experiment/opencv_awesome/example/build/opencv_awesome/intermediates/cmake/debug/obj/armeabi-v7a/libnative_opencv.so",
+			"toolchain" : "3544335133"
+		}
+	},
+	"toolchains" : 
+	{
+		"3544335133" : 
+		{
+			"cCompilerExecutable" : "C:/src/Android/Sdk/ndk/22.0.7026061/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe",
+			"cppCompilerExecutable" : "C:/src/Android/Sdk/ndk/22.0.7026061/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe"
+		}
+	}
+}

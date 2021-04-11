@@ -1,0 +1,77 @@
+{
+  "variant": {
+    "module": {
+      "rootBuildGradleFolder": "E:\\AndroidStudioProjects\\sunscape\\flutter_native_experiment\\opencv_awesome\\example\\android",
+      "sdkFolder": "C:\\Users\\hp\\AppData\\Local\\Android\\sdk",
+      "isNativeCompilerSettingsCacheEnabled": false,
+      "isBuildOnlyTargetAbiEnabled": true,
+      "splitsAbiFilterSet": [],
+      "intermediatesFolder": "E:\\AndroidStudioProjects\\sunscape\\flutter_native_experiment\\opencv_awesome\\example\\build\\opencv_awesome\\intermediates",
+      "gradleModulePathName": ":opencv_awesome",
+      "moduleRootFolder": "E:\\AndroidStudioProjects\\sunscape\\flutter_native_experiment\\opencv_awesome\\android",
+      "makeFile": "E:\\AndroidStudioProjects\\sunscape\\flutter_native_experiment\\opencv_awesome\\android\\CMakeLists.txt",
+      "buildSystem": "CMAKE",
+      "compilerSettingsCacheFolder": "E:\\AndroidStudioProjects\\sunscape\\flutter_native_experiment\\opencv_awesome\\example\\android\\.cxx",
+      "cxxFolder": "E:\\AndroidStudioProjects\\sunscape\\flutter_native_experiment\\opencv_awesome\\android\\.cxx",
+      "ndkFolder": "C:\\src\\Android\\Sdk\\ndk\\22.0.7026061",
+      "ndkVersion": "22.0.7026061",
+      "ndkSupportedAbiList": [
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64"
+      ],
+      "ndkDefaultAbiList": [
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64"
+      ],
+      "cmakeToolchainFile": "."
+    },
+    "buildSystemArgumentList": [
+      "-DANDROID_TOOLCHAIN\u003dclang++",
+      "-DANDROID_ARM_NEON\u003dTRUE",
+      "-DANDROID_STL\u003dc++_shared"
+    ],
+    "cFlagList": [],
+    "cppFlagsList": [
+      "-Wno-error\u003dformat-security",
+      "-frtti -fexceptions -std\u003dc++11"
+    ],
+    "variantName": "debug",
+    "soFolder": "E:\\AndroidStudioProjects\\sunscape\\flutter_native_experiment\\opencv_awesome\\example\\build\\opencv_awesome\\intermediates\\cmake\\debug\\lib",
+    "objFolder": "E:\\AndroidStudioProjects\\sunscape\\flutter_native_experiment\\opencv_awesome\\example\\build\\opencv_awesome\\intermediates\\cmake\\debug\\obj",
+    "jsonFolder": "E:\\AndroidStudioProjects\\sunscape\\flutter_native_experiment\\opencv_awesome\\android\\.cxx\\cmake\\debug",
+    "gradleBuildOutputFolder": "E:\\AndroidStudioProjects\\sunscape\\flutter_native_experiment\\opencv_awesome\\android\\.cxx\\cxx\\debug",
+    "isDebuggableEnabled": true,
+    "validAbiList": [
+      "ARMEABI_V7A",
+      "ARM64_V8A",
+      "X86",
+      "X86_64"
+    ],
+    "buildTargetSet": []
+  },
+  "abi": "X86_64",
+  "abiPlatformVersion": 16,
+  "cxxBuildFolder": "E:\\AndroidStudioProjects\\sunscape\\flutter_native_experiment\\opencv_awesome\\android\\.cxx\\cmake\\debug\\x86_64",
+  "jsonFile": "E:\\AndroidStudioProjects\\sunscape\\flutter_native_experiment\\opencv_awesome\\android\\.cxx\\cmake\\debug\\x86_64\\android_gradle_build.json",
+  "gradleBuildOutputFolder": "E:\\AndroidStudioProjects\\sunscape\\flutter_native_experiment\\opencv_awesome\\android\\.cxx\\cxx\\debug\\x86_64",
+  "objFolder": "E:\\AndroidStudioProjects\\sunscape\\flutter_native_experiment\\opencv_awesome\\example\\build\\opencv_awesome\\intermediates\\cmake\\debug\\obj\\x86_64",
+  "buildCommandFile": "E:\\AndroidStudioProjects\\sunscape\\flutter_native_experiment\\opencv_awesome\\android\\.cxx\\cmake\\debug\\x86_64\\build_command.txt",
+  "buildOutputFile": "E:\\AndroidStudioProjects\\sunscape\\flutter_native_experiment\\opencv_awesome\\android\\.cxx\\cmake\\debug\\x86_64\\build_output.txt",
+  "modelOutputFile": "E:\\AndroidStudioProjects\\sunscape\\flutter_native_experiment\\opencv_awesome\\android\\.cxx\\cmake\\debug\\x86_64\\build_model.json",
+  "cmake": {
+    "cmakeListsWrapperFile": "E:\\AndroidStudioProjects\\sunscape\\flutter_native_experiment\\opencv_awesome\\android\\.cxx\\cxx\\debug\\x86_64\\CMakeLists.txt",
+    "toolchainWrapperFile": "E:\\AndroidStudioProjects\\sunscape\\flutter_native_experiment\\opencv_awesome\\android\\.cxx\\cxx\\debug\\x86_64\\android_gradle_build.toolchain.cmake",
+    "buildGenerationStateFile": "E:\\AndroidStudioProjects\\sunscape\\flutter_native_experiment\\opencv_awesome\\android\\.cxx\\cxx\\debug\\x86_64\\build_generation_state.json",
+    "cacheKeyFile": "E:\\AndroidStudioProjects\\sunscape\\flutter_native_experiment\\opencv_awesome\\android\\.cxx\\cxx\\debug\\x86_64\\compiler_cache_key.json",
+    "compilerCacheUseFile": "E:\\AndroidStudioProjects\\sunscape\\flutter_native_experiment\\opencv_awesome\\android\\.cxx\\cxx\\debug\\x86_64\\compiler_cache_use.json",
+    "compilerCacheWriteFile": "E:\\AndroidStudioProjects\\sunscape\\flutter_native_experiment\\opencv_awesome\\android\\.cxx\\cxx\\debug\\x86_64\\compiler_cache_write.json",
+    "toolchainSettingsFromCacheFile": "E:\\AndroidStudioProjects\\sunscape\\flutter_native_experiment\\opencv_awesome\\android\\.cxx\\cxx\\debug\\x86_64\\compiler_settings_cache.cmake",
+    "cmakeWrappingBaseFolder": "."
+  },
+  "jsonGenerationLoggingRecordFile": "E:\\AndroidStudioProjects\\sunscape\\flutter_native_experiment\\opencv_awesome\\android\\.cxx\\cmake\\debug\\x86_64\\json_generation_record.json",
+  "compileCommandsJsonFile": "E:\\AndroidStudioProjects\\sunscape\\flutter_native_experiment\\opencv_awesome\\android\\.cxx\\cmake\\debug\\x86_64\\compile_commands.json"
+}
