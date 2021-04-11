@@ -8,8 +8,11 @@ A Flutter plugin providing the ability to use opencv native c++ implementation f
 The plugin is supported for android only and will be extended for ios in future.
 
 **Features:**
+  1. Stich multi images using high level stitching api of opencv.
+  
+![alt preview](https://i.ibb.co/dp1ft8P/Screenshot-1618131260.png)
 
-Image format:
+## Image format:
 
 - PNG
 - JPEG
