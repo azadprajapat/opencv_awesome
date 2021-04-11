@@ -52,12 +52,10 @@ struct tokens: ctype<char>
             if (status != Stitcher::OK)
             {
                  hconcat(imgVec,result);
-
-                 __android_log_print(ANDROID_LOG_VERBOSE,"C++Message","NOW WE ARE IN C++ AND UNABLE TO STITCH IMAGES");
-                __android_log_print(ANDROID_LOG_VERBOSE,"C++Message", to_string(status).c_str());
+            __android_log_print(ANDROID_LOG_WARN,"OpencvAwesome","image does not have overlap region or texture and variation simply concating images");
 
              }else{
-                __android_log_print(ANDROID_LOG_VERBOSE,"C++Message","NOW WE ARE IN C++ AND STITCHING IS DONE SUCCESSFULLY");
+                __android_log_print(ANDROID_LOG_INFO,"OpencvAwesome","successfully stiched");
              }
 
         cvtColor(result, result, COLOR_RGB2BGR);
@@ -84,9 +82,9 @@ struct tokens: ctype<char>
     }
 
     void stitch_image(char* inputImagePath, char* outputImagePath, char* mode ) {
-        __android_log_print(ANDROID_LOG_VERBOSE,"C++Message","WORKING ON STITCHER");
+        __android_log_print(ANDROID_LOG_VERBOSE,"OpencvAwesome","stitching in progress ...");
         string input_path_string =  inputImagePath;
-        __android_log_print(ANDROID_LOG_VERBOSE,"C++Message","%s", input_path_string.c_str());
+        __android_log_print(ANDROID_LOG_VERBOSE,"OpencvAwesome","%s", input_path_string.c_str());
         vector<string> image_vector_list=getpathlist(input_path_string);
         vector<Mat> mat_list;
         if(strcmp(mode,"horizontal")==0){
