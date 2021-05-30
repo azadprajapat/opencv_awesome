@@ -192,6 +192,17 @@ class _MyAppState extends State<MyApp> {
                            child: Image.file(File(vertical_path_list[index])),
                          ),),),
                      ),
+                     Center(
+                         child: MaterialButton(
+                           color: Colors.green,
+                           disabledColor: Colors.black38,
+                           onPressed: () async{
+                              String dirpath= (await getApplicationDocumentsDirectory()).path+"/"+DateTime.now().toString()+"_.jpg";
+                             await  OpencvAwesome.start_camera(dirpath);
+                           },
+                           child: Text("start camera",style: TextStyle(color: Colors.white),),
+                         )),
+
 
 
                    ]),
