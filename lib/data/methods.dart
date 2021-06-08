@@ -1,35 +1,37 @@
-import 'dart:ffi' as ffi;
+import 'dart:ffi';
 import 'dart:io';
 import 'package:ffi/ffi.dart';
 import 'package:opencv_awesome/modal/ProcessImage.dart';
 
-typedef _version_func = ffi.Pointer<Utf8> Function();
- typedef _stitch_image_func = ffi.Void Function(ffi.Pointer<Utf8>, ffi.Pointer<Utf8>,ffi.Pointer<Utf8>);
+typedef _version_func = Pointer<Utf8> Function();
+ typedef _stitch_image_func = Void Function(Pointer<Utf8>, Pointer<Utf8>,Pointer<Utf8>);
 
  // Dart function signatures
- typedef _VersionFunc = ffi.Pointer<Utf8> Function();
- typedef _StitchImageFunc = void Function(ffi.Pointer<Utf8>, ffi.Pointer<Utf8>,ffi.Pointer<Utf8>);
+ typedef _VersionFunc = Pointer<Utf8> Function();
+ typedef _StitchImageFunc = void Function(Pointer<Utf8>, Pointer<Utf8>,Pointer<Utf8>);
+
 
  // Getting a library that holds needed symbols
- ffi.DynamicLibrary _lib = Platform.isAndroid
-     ? ffi.DynamicLibrary.open('libnative_opencv.so')
-     : ffi.DynamicLibrary.process();
+ DynamicLibrary _lib = Platform.isAndroid
+     ? DynamicLibrary.open('libnative_opencv.so')
+     : DynamicLibrary.process();
 
  // Looking for the functions
  final _VersionFunc _version = _lib
-     .lookup<ffi.NativeFunction<_version_func>>('version')
+     .lookup<NativeFunction<_version_func>>('version')
      .asFunction();
  final _StitchImageFunc _stitchImage = _lib
-     .lookup<ffi.NativeFunction<_stitch_image_func>>('stitch_image')
+     .lookup<NativeFunction<_stitch_image_func>>('stitch_image')
      .asFunction();
 
-
 class Methods{
-  static stitchImageHorizontal(ProcessImageArguments args) {
-     _stitchImage(Utf8.toUtf8(args.inputPath), Utf8.toUtf8(args.outputPath),Utf8.toUtf8("horizontal"));
+  static stitchImageHorizontal(ProcessImageArguments args)async {
+
+   _stitchImage(args.inputPath.toNativeUtf8(), args.outputPath.toNativeUtf8(),("horizontal").toNativeUtf8());
   }
   static stitchImageVertical(ProcessImageArguments args) {
-    _stitchImage(Utf8.toUtf8(args.inputPath), Utf8.toUtf8(args.outputPath),Utf8.toUtf8("vertical"));
+    _stitchImage(args.inputPath.toNativeUtf8(), args.outputPath.toNativeUtf8(),("vertical").toNativeUtf8());
   }
+
 }
 

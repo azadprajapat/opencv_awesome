@@ -1,3 +1,0 @@
-E:/AndroidStudioProjects/sunscape/flutter_native_experiment/opencv_awesome/android/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/native_opencv.dir
-E:/AndroidStudioProjects/sunscape/flutter_native_experiment/opencv_awesome/android/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/edit_cache.dir
-E:/AndroidStudioProjects/sunscape/flutter_native_experiment/opencv_awesome/android/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/rebuild_cache.dir

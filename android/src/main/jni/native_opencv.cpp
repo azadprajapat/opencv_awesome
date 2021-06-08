@@ -10,6 +10,7 @@ extern "C" {
     // Attributes to prevent 'unused' function from being removed and to make it visible
     __attribute__((visibility("default"))) __attribute__((used))
     const char* version() {
+        __android_log_print(ANDROID_LOG_VERBOSE,"OpencvAwesome","Dart ffi is setup");
         return CV_VERSION;
     }
 
@@ -44,7 +45,6 @@ struct tokens: ctype<char>
     }
 
     Mat process_stitching(vector<Mat> imgVec){
-
         Mat result = Mat();
           Stitcher::Mode mode = Stitcher::PANORAMA;
         Ptr<Stitcher> stitcher = Stitcher::create(mode);
@@ -80,7 +80,6 @@ struct tokens: ctype<char>
         }
        return imgVec;
     }
-
     void stitch_image(char* inputImagePath, char* outputImagePath, char* mode ) {
         __android_log_print(ANDROID_LOG_VERBOSE,"OpencvAwesome","stitching in progress ...");
         string input_path_string =  inputImagePath;
@@ -96,7 +95,7 @@ struct tokens: ctype<char>
         }
        Mat result = process_stitching(mat_list);
        Mat cropped_image;
-        result(Rect(20,120,result.cols-40,result.rows-240)).copyTo(cropped_image);
+        result(Rect(0,0,result.cols,result.rows)).copyTo(cropped_image);
         if(strcmp(mode,"vertical")==0)
             rotate(cropped_image,cropped_image,ROTATE_90_CLOCKWISE);
 

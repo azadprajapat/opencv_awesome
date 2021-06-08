@@ -1,4 +1,3 @@
-
 import 'dart:async';
 import 'dart:isolate';
 import 'package:flutter/services.dart';
@@ -16,7 +15,6 @@ class OpencvAwesome {
       Function oncompleted) async {
     final port = ReceivePort();
     final args = ProcessImageArguments(inputpath.toString(), output_path);
-    // Spawning an isolate
     Isolate.spawn<ProcessImageArguments>(
         Methods.stitchImageHorizontal,
         args,
@@ -34,6 +32,7 @@ class OpencvAwesome {
     final port = ReceivePort();
     final args = ProcessImageArguments(inputpath.toString(), output_path);
     // Spawning an isolate
+
     Isolate.spawn<ProcessImageArguments>(
         Methods.stitchImageVertical,
         args,
